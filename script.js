@@ -8,15 +8,21 @@ if (window.XMLHttpRequest) {
 }
 
 //Ajax Request
-request.open('GET', 'data.txt');
+request.open('GET', 'data.xml');
 request.onreadystatechange = function () {
     //Check Status of request
     if ((request.status === 200) && (request.readyState === 4)) {
-        var modify = document.getElementsByTagName('li');
-        modify[2].innerHTML = request.responseText;
-            for(var i = 0; i < modify.length; ++i){
-                modify[i].innerHTML = request.responseText;
+
+        var items = request.responseXML.getElementsByTagName('name');
+        var output = '<ul>';
+        for(var i = 0; i < items.length; i++)
+        {
+            output += '<li>' + items[i].firstChild.nodeValue + '</li>';
         }
+        output += '</ul>';
+
+        document.getElementById('update').innerHTML = output;
+
     }
 };
 request.send();
