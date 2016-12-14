@@ -4,7 +4,6 @@ mybutton.onclick = function ()
 {
     var request;
 
-//Check for compatibility
     if (window.XMLHttpRequest)
     {
         request = new XMLHttpRequest()
@@ -13,8 +12,6 @@ mybutton.onclick = function ()
     {
         request = new ActiveXObject("Microsoft.XMLHTTP");
     }
-
-//Ajax Request
     request.open('GET', 'data.json');
     request.onreadystatechange = function ()
     {
@@ -33,5 +30,4 @@ mybutton.onclick = function ()
         }
     };
     request.send();
-
 };
